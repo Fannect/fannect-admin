@@ -1,0 +1,29 @@
+extend layout
+
+block main
+   h2 Games by Day
+   form(action="/gamesbyday", method="GET")
+      label Date
+      input(type="date", name="date", value="#{date}")
+      label Sport
+      input(type="text", name="sport", value="#{sport}")
+      button(type="submit") Submit
+
+   if games.length > 0
+      table
+         tr
+            th Event Key
+            th Time
+            th Away
+            th Home
+            th Stadium
+         for game in games
+            tr
+               td= game.event_key
+               td= game.start_time
+               td: a(href="/teams/#{game.away.id}") #{game.away.name}
+               td: a(href="/teams/#{game.home.id}") #{game.home.name}
+               td= game.stadium.name
+   else
+      p No games found
+      

@@ -1,0 +1,18 @@
+extend ../layout
+
+block main
+   h2 Active Teams
+   
+   p Total Profiles: <b>#{data.total_profiles}</b>
+   p Teams with Profiles: <b>#{data.teams.length}</b>
+
+   if data.teams.length > 0
+      table
+         for team in data.teams
+            tr
+               td= team.sport
+               td: a(href="/teams/#{team._id}")= team.name
+               td #{team.profiles} - #{Math.round(team.profiles / data.total_profiles * 10000) / 100}%
+   else
+      p No active teams
+      

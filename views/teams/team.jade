@@ -1,0 +1,24 @@
+extend ../layout
+
+block main
+   h2 #{data.team.full_name} - #{data.team.sport_name}
+
+   h3 Profiles: #{data.profile_count}
+
+   h3 Total Huddles: #{data.huddle_count}
+
+   h3 Active Highlights: #{data.highlight_active_count}
+   if data.highlight_active_breakdown.length > 0
+      table
+         for category in data.highlight_active_breakdown
+            tr
+               td= prettyCamel(category._id)
+               td= category.posts
+
+   h3 Total Highlights: #{data.highlight_total_count}
+   if data.highlight_total_breakdown.length > 0
+      table
+         for category in data.highlight_total_breakdown
+            tr
+               td= prettyCamel(category._id)
+               td= category.posts

@@ -1,0 +1,34 @@
+extend layout
+
+block main
+   h2 Highlights
+   
+   h3 Active Highlights: #{data.active}
+   if data.active_breakdown.length > 0
+      table
+         for category in data.active_breakdown
+            tr
+               td= prettyCamel(category._id)
+               td= category.posts
+   else
+      p None.
+
+   h3 Total Highlights: #{data.total}
+   if data.total_breakdown.length > 0
+      table
+         for category in data.total_breakdown
+            tr
+               td= prettyCamel(category._id)
+               td= category.posts
+   else
+      p None.
+
+   h3 Teams with Highlights
+   if data.teams.length > 0
+      table
+         for team in data.teams
+            tr
+               td: a(href="/teams/#{team._id}")= team.name
+               td= team.posts
+   else
+      p No teams.

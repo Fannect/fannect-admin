@@ -1,0 +1,16 @@
+extend layout
+
+block main
+   h2 Huddles
+   p Total Huddles: #{data.huddle_count}
+
+   h3 Teams with Huddles
+
+   if data.teams.length > 0
+      table
+         for team in data.teams
+            tr
+               td: a(href="/teams/#{team._id}")= team.name
+               td= team.posts
+   else
+      p No teams.

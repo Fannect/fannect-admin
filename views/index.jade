@@ -1,0 +1,38 @@
+extend layout
+
+block nav
+
+block main
+   h2 A few numbers to get you started
+
+   table
+      tr
+         td Total Users
+         td= data.total_users
+      tr
+         td Total Profiles
+         td= data.total_profiles
+      tr
+         td Users with Twitter
+         td #{data.twitter_users} - #{Math.round(data.twitter_users / data.total_users * 10000) / 100}%
+      tr
+         td Users with Facebook
+         td #{data.facebook_users} - #{Math.round(data.facebook_users / data.total_users * 10000) / 100}%
+      tr
+         td Users with Instagram
+         td #{data.instagram_users} - #{Math.round(data.instagram_users / data.total_users * 10000) / 100}%
+      tr
+         td Verified Users
+         td #{data.verified_users} - #{Math.round(data.verified_users / data.total_users * 10000) / 100}%
+   
+   h2 Digging deeper
+   ul 
+      li: a(href="/gamesByDay") Games by Day
+      li: a(href="/huddles") Huddles
+      li: a(href="/highlights") Highlights
+      li
+         span Teams
+         ul
+            li: a(href="/teams/active") Active
+            li: a(href="teams/search") Search
+            li: a(href="/teams/location") By Location

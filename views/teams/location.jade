@@ -1,0 +1,20 @@
+extend ../layout
+
+block main
+   h2 Teams by Location
+   
+   form(action="/teams/location", method="GET")
+      label Location
+      input(type="text", name="q", value="#{data.q}")
+      button(type="submit") Submit
+
+   if data.q
+      p Found <b>#{data.teams.length}</b> teams.
+
+   if data.teams.length > 0
+      table
+         for team in data.teams
+            tr
+               td= team.sport
+               td: a(href="/teams/#{team._id}")= team.name
+               td= team.profiles
