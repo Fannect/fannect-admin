@@ -40,7 +40,7 @@ app.use passport.initialize()
 
 # Security
 passport.use new BasicStrategy (u, p, done) ->
-   done null, (u.toLowerCase() == "fannect" and p == "BestAdminTool")
+   done null, (u.toLowerCase() == "fannect" and p == (process.env.PASSWORD or "BestAdminTool")
 
 # Routes
 app.get "/", passport.authenticate("basic", { session: false }), (req, res, next) -> 
