@@ -18,7 +18,5 @@ app.get "/huddles", passport.authenticate("basic", { session: false }), (req, re
          , { $sort: { posts: -1 }}
          , done
    , (err, data) ->
-
-      console.log data
       return res.render "error", error: err if err
       res.render "huddles", data: data

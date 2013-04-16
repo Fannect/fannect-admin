@@ -9,8 +9,12 @@ passport = require "passport"
 app = module.exports = express()
 
 app.get "/gamesbyday", passport.authenticate("basic", { session: false }), (req, res, next) ->
-   date = if req.query.date then new Date(new Date(req.query.date)/1 + 3.6e6) else new Date()
-   date = new Date()
+   if req.query.date
+      date = new Date("#{req.query.date} 00:00:00 GMT-0500 (CDT)")
+   else
+      temp = new Date()
+      date = new Date("#{temp.getFullYear()}-#{temp.getMonth()+1}-#{temp.getDate()} 00:00:00 GMT-0500 (CDT)")
+
    end_date = new Date(date/1 + 8.64e7)
    sport = req.query.sport
 
