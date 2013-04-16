@@ -46,7 +46,7 @@ app.get "/gamesbyday", passport.authenticate("basic", { session: false }), (req,
 
          event_keys.push(game.event_key)
          if process.env.NODE_ENV == "production"
-            startTime = dateFormat(game.game_time/1+3.6e6, "shortTime")
+            startTime = dateFormat(game.game_time/1-(3.6e6*5), "shortTime")
          else
             startTime = dateFormat(game.game_time, "shortTime")
          games.push
