@@ -45,6 +45,10 @@ app.get "/gamesbyday", passport.authenticate("basic", { session: false }), (req,
          return if sport and team.sport_name.toLowerCase() != sport.toLowerCase()
 
          event_keys.push(game.event_key)
+         if process.env.NODE_ENV == "production"
+            startTime = dateFormat(game.game_time/1+3.6e6, "shortTime")
+         else
+            startTime = dateFormat(game.game_time, "shortTime")
          games.push
             away: 
                id: if game.is_home then game.opponent_id else team._id
@@ -54,7 +58,7 @@ app.get "/gamesbyday", passport.authenticate("basic", { session: false }), (req,
                name: if game.is_home then team.full_name else game.opponent
             event_key: game.event_key
             game_time: game.game_time
-            start_time: dateFormat(game.game_time, "shortTime")
+            start_time: startTime
             stadium: 
                location: game.stadium_location
                name: game.stadium_name
